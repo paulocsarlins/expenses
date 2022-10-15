@@ -1,6 +1,7 @@
 import 'package:expenses/components/transaction_form.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'dart:io';
 import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
 import 'components/chart.dart';
@@ -98,27 +99,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+        mediaQuery.orientation == Orientation.landscape;
     final appBar = AppBar(
       title: const Text('Despesas Pessoais'),
       actions: [
-        if(isLandscape)
-        IconButton(
-          icon: Icon(_showChart ? Icons.list : Icons.pie_chart),
-          onPressed: () {
-            setState(() {
-              _showChart = !_showChart;
-            });
-          },
-        ),
+        if (isLandscape)
+          IconButton(
+            icon: Icon(_showChart ? Icons.list : Icons.pie_chart),
+            onPressed: () {
+              setState(() {
+                _showChart = !_showChart;
+              });
+            },
+          ),
         IconButton(
           icon: const Icon(Icons.add),
           onPressed: () => _openTransactionFormModal(context),
         ),
       ],
     );
-    final availableHeight = MediaQuery.of(context).size.height -
+    final availableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
     return Scaffold(
@@ -127,12 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-          /*  if (isLandscape)
+            /*  if (isLandscape)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Exibir Gráfico'),
-                  Switch(
+                  Switch.adaptive(
+                    activeColor: Theme.of(context).colorScheme.secondary,
                     value: _showChart,
                     onChanged: (value) {
                       setState(() {
@@ -153,7 +156,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: Platform.isIOS ? 
+      Container()
+      : FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _openTransactionFormModal(context),
       ),
