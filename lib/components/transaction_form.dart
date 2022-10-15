@@ -79,13 +79,13 @@ class _TransactionFormState extends State<TransactionForm> {
                     ),
                   ),
                   TextButton(
+                    onPressed: _showDatePicker,
                     child: const Text(
                       'Selecionar Data',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: _showDatePicker,
                   )
                 ],
               ),
@@ -94,13 +94,13 @@ class _TransactionFormState extends State<TransactionForm> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ElevatedButton(
+                  onPressed: _submitForm,
                   child: Text(
                     'Nova Transação',
                     style: TextStyle(
                       color: Theme.of(context).textTheme.button?.color,
                     ),
                   ),
-                  onPressed: _submitForm,
                 ),
               ],
             ),

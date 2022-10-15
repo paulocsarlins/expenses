@@ -16,7 +16,7 @@ class TransactionList extends StatelessWidget {
             return Column(
               children: [
             const   SizedBox(height: 20),
-                Container(
+                SizedBox(
                   height: constraints.maxHeight * 0.1,
                   child: Text(
                     'Nenhuma Transação Cadastrada!',
@@ -68,7 +68,7 @@ class TransactionList extends StatelessWidget {
                     DateFormat('d MM y').format(tr.date),
                   ),
                   trailing: IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                     color: Theme.of(context).errorColor,
                     onPressed: () => onRemove(tr.id),
                   ),

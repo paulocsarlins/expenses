@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ChartBar extends StatelessWidget {
   final String? label;
@@ -19,9 +18,9 @@ class ChartBar extends StatelessWidget {
       builder: (context, constraints) {
         return Column(
           children: [
-            Container(
+            SizedBox(
               height: constraints.maxHeight * 0.15,
-              child: FittedBox(child: Text('${value!.toStringAsFixed(2)}')),
+              child: FittedBox(child: Text(value!.toStringAsFixed(2))),
             ),
              SizedBox(height: constraints.maxHeight * 0.05),
             SizedBox(
@@ -52,7 +51,7 @@ class ChartBar extends StatelessWidget {
               ),
             ),
             SizedBox(height: constraints.maxHeight * 0.05),
-            Container(
+            SizedBox(
               height: constraints.maxHeight * 0.15,
               child: FittedBox(child: Text(label!))),
           ],

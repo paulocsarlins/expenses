@@ -30,7 +30,7 @@ class ExpensesApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
-          button: TextStyle(
+          button: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -143,11 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ), */
             if (_showChart || !isLandscape)
-              Container(
+              SizedBox(
                   height: availableHeight * (isLandscape ? 0.7 : 0.30),
                   child: Chart(_recentTransactions)),
             if (!_showChart || !isLandscape)
-              Container(
+              SizedBox(
                   height: availableHeight * 0.70,
                   child: TransactionList(_transactions, _removeTransaction)),
           ],
