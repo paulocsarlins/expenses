@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
@@ -67,7 +69,14 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat('d MM y').format(tr.date),
                   ),
-                  trailing: IconButton(
+                  trailing: MediaQuery.of(context).size.width > 400 ?
+                    FlatButton.icon(
+                      onPressed: () => onRemove(tr.id), 
+                      icon: const Icon(Icons.delete), 
+                      label: Text('Excluir'),
+                      textColor: Theme.of(context).errorColor,
+                      )
+                  : IconButton(
                     icon: const Icon(Icons.delete),
                     color: Theme.of(context).errorColor,
                     onPressed: () => onRemove(tr.id),
